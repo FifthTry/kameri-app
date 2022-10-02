@@ -12,7 +12,7 @@ FPM Blank Package Template Repo
 
 ## 🚀 Project Structure
 
-Inside of your FPM project, you'll see the following folders and files:
+Inside your FPM project, you'll see the following folders and files:
 
 ```
 /

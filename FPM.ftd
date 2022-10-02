@@ -1,6 +1,6 @@
 -- import: fpm
 
--- fpm.package: fifthtry.github.io/kameri-app
+-- fpm.package: kameri-app
 download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
 
 -- fpm.dependency: fifthtry.github.io/doc-site as ds

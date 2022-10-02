@@ -1,0 +1,57 @@
+-- import: fpm
+
+-- ftd.text: ADD NEW TODO
+role: $fpm.type.heading-large
+text-align: center
+style: bold
+margin-top: $fpm.space.space-8
+padding-left: 30
+
+
+-- ftd.row input-box:
+caption label:
+optional string placeholder:
+optional string value:
+padding-left: $fpm.space.space-7
+margin-top: $fpm.space.space-1
+height: 50
+align: left
+
+;; Input Box Label
+--- ftd.text: $label
+padding-left: $fpm.space.space-7
+role: $fpm.type.copy-large
+align: left
+text-align: right
+style: bold
+width: 170
+
+;; Input Box
+--- ftd.input:
+placeholder: $placeholder
+padding-horizontal: 16
+padding-vertical: 8
+margin-left: $fpm.space.space-2
+width: 400
+height: 40
+border-width: 2
+border-color: $fpm.color.main.border
+border-radius: 8
+$on-input$: $value=$VALUE
+
+-- optional string title:
+-- optional string status:
+-- optional string description:
+
+-- input-box: Title
+value: $title
+placeholder: Title of the todo
+
+
+-- input-box: Status
+value: $status
+placeholder: Status of the todo
+
+-- input-box: Description
+value: $description
+placeholder: Description of the todo
