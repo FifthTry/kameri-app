@@ -14,7 +14,7 @@ caption label:
 optional string placeholder:
 optional string $value:
 padding-left: $fpm.space.space-7
-margin-top: $fpm.space.space-1
+margin-top: $fpm.space.space-3
 height: 50
 align: left
 
@@ -32,7 +32,7 @@ width: 170
 placeholder: $placeholder
 padding-horizontal: 16
 padding-vertical: 8
-margin-left: $fpm.space.space-2
+margin-left: $fpm.space.space-4
 width: 400
 height: 40
 border-width: 2

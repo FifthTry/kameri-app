@@ -1,10 +1,9 @@
 -- string foo: Abrar Khan
+$always-include$: true
 
 -- ftd.text: Hey Button
 $on-click$: message-host $temp
 
-
--- ftd.text: $foo
 
 -- object temp:
 function: http
