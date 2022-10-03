@@ -1,7 +1,5 @@
 -- import: fpm
 
--- string foo: Abrar Khan
-
 -- ftd.text: ADD NEW TODO
 role: $fpm.type.heading-large
 text-align: center
@@ -14,7 +12,7 @@ padding-left: 30
 -- ftd.row input-box:
 caption label:
 optional string placeholder:
-optional string value:
+optional string $value:
 padding-left: $fpm.space.space-7
 margin-top: $fpm.space.space-1
 height: 50
@@ -43,20 +41,25 @@ border-radius: 8
 $on-input$: $value=$VALUE
 
 -- optional string title:
+$always-include$: true
+
 -- optional string status:
+$always-include$: true
+
 -- optional string description:
+$always-include$: true
 
 -- input-box: Title
-value: $title
+$value: $title
 placeholder: Title of the todo
 
 
 -- input-box: Status
-value: $status
+$value: $status
 placeholder: Status of the todo
 
 -- input-box: Description
-value: $description
+$value: $description
 placeholder: Description of the todo
 
 
@@ -94,16 +97,10 @@ align: center
 $on-click$: message-host $add-api
 
 
--- object temp:
-function: http
-method: get
-url: /api/add-todo/
-
-
 -- object add-api:
 function: http
 method: post
 url: /api/add-todo/
-foo: $foo
-/status: $status
-/description: $description
+title: $title
+status: $status
+description: $description
