@@ -1,5 +1,7 @@
 -- import: fpm
 
+-- string foo: Abrar Khan
+
 -- ftd.text: ADD NEW TODO
 role: $fpm.type.heading-large
 text-align: center
@@ -8,6 +10,7 @@ margin-top: $fpm.space.space-8
 padding-left: 30
 
 
+;; Input Box with Label
 -- ftd.row input-box:
 caption label:
 optional string placeholder:
@@ -55,3 +58,52 @@ placeholder: Status of the todo
 -- input-box: Description
 value: $description
 placeholder: Description of the todo
+
+
+-- ftd.color transparent-color:
+light: rgba(255,255,255,0)
+dark: rgba(255,255,255,0)
+
+-- ftd.color black:
+light: black
+dark: black
+
+
+-- ftd.row button:
+caption text:
+border-width: 2
+border-radius: 10
+border-color: $transparent-color
+background-color: $fpm.color.main.custom.two
+height: 50
+width: 150
+align: center
+
+
+--- ftd.text: $text
+role: $fpm.type.heading-small
+color: $black
+style: bold
+width: fill
+text-align: center
+align: center
+
+
+
+-- button: Add TODO
+$on-click$: message-host $add-api
+
+
+-- object temp:
+function: http
+method: get
+url: /api/add-todo/
+
+
+-- object add-api:
+function: http
+method: post
+url: /api/add-todo/
+foo: $foo
+/status: $status
+/description: $description

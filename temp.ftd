@@ -1,0 +1,13 @@
+-- string foo: Abrar Khan
+
+-- ftd.text: Hey Button
+$on-click$: message-host $temp
+
+
+-- ftd.text: $foo
+
+-- object temp:
+function: http
+method: post
+url: /api/add/
+foo: $foo
