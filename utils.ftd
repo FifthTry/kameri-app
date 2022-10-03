@@ -1,0 +1,30 @@
+-- import: fpm
+
+-- ftd.color transparent-color:
+light: rgba(255,255,255,0)
+dark: rgba(255,255,255,0)
+
+-- ftd.color black:
+light: black
+dark: black
+
+
+-- ftd.row button:
+caption text:
+border-width: 2
+border-radius: 10
+border-color: $transparent-color
+background-color: $fpm.color.main.custom.two
+height: 50
+width: 150
+align: center
+optional string link:
+
+
+--- ftd.text: $text
+role: $fpm.type.heading-small
+color: $black
+style: bold
+width: fill
+text-align: center
+link: $link

@@ -1,20 +1,37 @@
 -- import: kameri-app/assets
--- import: fpm
+-- import: kameri-app/utils
 
--- ds.h1: Task TODOs
+
+-- utils.button: Add TODO
+link: /add-todo/
+
+/-- ds.h1: Task TODOs
 
 1. Add Todo Page
 2. List Todo
 3. Update Todo
 4. Show Error In the form
 
--- ftd.text: ADD TODO
-role: $fpm.type.heading-small
-color: $fpm.color.main.background.step-1
-padding-top: 5
-style: bold
-width: fill
-height: fill
-text-align: center
-align: center
-link: /add-todo
+
+
+-- record todo:
+string title:
+string status:
+string description:
+
+
+-- todo list todos:
+$processor$: http
+method: get
+url: http://127.0.0.1:8001/api/todos/
+
+
+-- print-todo:
+$loop$: $todos as $todo
+todo: $todo
+
+
+-- ftd.row print-todo:
+todo todo:
+
+--- ftd.text: $todo.title

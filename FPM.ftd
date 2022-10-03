@@ -2,7 +2,16 @@
 
 -- fpm.package: kameri-app
 download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
+endpoint: http://127.0.0.1:8001
 
 -- fpm.dependency: fifthtry.github.io/doc-site as ds
 
 -- fpm.auto-import: ds
+
+
+-- fpm.sitemap:
+
+# App: /
+
+- Add Todo: /add-todo/
+- List Todo: /
