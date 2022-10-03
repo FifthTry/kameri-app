@@ -92,6 +92,7 @@ text-align: center
 align: center
 
 
+-- optional string title-error: Title is mandatory
 
 -- button: Add TODO
 $on-click$: message-host $add-api
@@ -104,3 +105,6 @@ url: /api/add-todo/
 title: $title
 status: $status
 description: $description
+
+
+-- ftd.text: $title-error
