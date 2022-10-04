@@ -47,9 +47,15 @@ todo todo:
 spacing: 30
 width: fill
 border-color: $utils.black
-border-width: 1
+border-radius: 10
 padding: 15
 string status: $todo.status
+background-color: $fpm.main.success.base
+shadow-color: $fpm.color.main.cta-tertiary.border
+shadow-offset-x: 1
+shadow-offset-y: 2
+shadow-size: 2
+shadow-blur: 3
 
 --- ftd.row:
 width: fill
@@ -67,11 +73,12 @@ spacing: 20
 
 --- ftd.input:
 value: $status
-border-color: $utils.black
 border-width: 1
 border-radius: 5
 padding: 5
 $on-input$: $status=$VALUE
+background-color: $fpm.main.text-strong
+
 
 --- utils.update-button: Update
 $on-click$: $todo-status = $status
