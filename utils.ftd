@@ -15,8 +15,7 @@ border-width: 2
 border-radius: 10
 border-color: $transparent-color
 background-color: $fpm.color.main.custom.two
-height: 50
-width: 150
+padding: 10
 align: center
 optional string link:
 

@@ -2,8 +2,15 @@
 -- import: kameri-app/assets
 -- import: kameri-app/utils
 
+-- optional string todo-status:
+$always-include$: true
+
+-- optional integer todo-id:
+$always-include$: true
+
 
 -- record todo:
+integer id:
 string title:
 string status:
 string description:
@@ -42,6 +49,7 @@ width: fill
 border-color: $utils.black
 border-width: 1
 padding: 15
+string status: $todo.status
 
 --- ftd.row:
 width: fill
@@ -58,13 +66,17 @@ spacing: 20
 
 
 --- ftd.input:
-value: $todo.status
+value: $status
 border-color: $utils.black
 border-width: 1
 border-radius: 5
 padding: 5
+$on-input$: $status=$VALUE
 
 --- utils.update-button: Update
+$on-click$: $todo-status = $status
+$on-click$: $todo-id = $todo.id
+$on-click$: message-host $update-status-api
 
 
 --- container: ftd.main
@@ -80,3 +92,11 @@ url: http://127.0.0.1:8001/api/todos/
 
 -- list-todo:
 todos: $todos
+
+
+-- object update-status-api:
+function: http
+method: post
+url: /api/update-todo/
+id: $todo-id
+status: $todo-status
