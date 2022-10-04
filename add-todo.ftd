@@ -13,6 +13,7 @@ padding-left: 30
 caption label:
 optional string placeholder:
 optional string $value:
+optional string $error:
 padding-left: $fpm.space.space-7
 margin-top: $fpm.space.space-3
 height: 50
@@ -40,26 +41,44 @@ border-color: $fpm.color.main.border
 border-radius: 8
 $on-input$: $value=$VALUE
 
+;; input error
+--- ftd.text: $error
+
+
 -- optional string title:
+$always-include$: true
+
+-- optional string title-error:
 $always-include$: true
 
 -- optional string status:
 $always-include$: true
 
+-- optional string status-error:
+$always-include$: true
+
+
 -- optional string description:
 $always-include$: true
 
+-- optional string description-error:
+$always-include$: true
+
+
 -- input-box: Title
 $value: $title
+$error: $title-error
 placeholder: Title of the todo
 
 
 -- input-box: Status
 $value: $status
+$error: $status-error
 placeholder: Status of the todo
 
 -- input-box: Description
 $value: $description
+$error: $description-error
 placeholder: Description of the todo
 
 
@@ -92,8 +111,6 @@ text-align: center
 align: center
 
 
--- optional string title-error: Title is mandatory
-
 -- button: Add TODO
 $on-click$: message-host $add-api
 
@@ -105,6 +122,3 @@ url: /api/add-todo/
 title: $title
 status: $status
 description: $description
-
-
--- ftd.text: $title-error
