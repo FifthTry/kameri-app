@@ -28,3 +28,22 @@ style: bold
 width: fill
 text-align: center
 link: $link
+
+
+-- ftd.row update-button:
+caption text:
+border-width: 2
+border-radius: 5
+border-color: $transparent-color
+background-color: $fpm.color.main.success.text
+padding: 5
+align: center
+optional string link:
+
+
+--- ftd.text: $text
+role: $fpm.type.label-small
+color: $fpm.color.main.text-strong
+width: fill
+text-align: center
+link: $link

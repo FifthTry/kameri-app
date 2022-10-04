@@ -1,12 +1,5 @@
 -- import: fpm
 
--- ftd.text: ADD NEW TODO
-role: $fpm.type.heading-large
-text-align: center
-style: bold
-margin-top: $fpm.space.space-8
-padding-left: 30
-
 
 ;; Input Box with Label
 -- ftd.column input-box:
@@ -14,10 +7,12 @@ caption label:
 optional string placeholder:
 optional string $value:
 optional string $error:
+boolean multiline: false
+string height: 40
 padding-left: $fpm.space.space-7
 margin-top: $fpm.space.space-7
 height: 50
-align: left
+
 
 --- ftd.row:
 width: fill
@@ -37,10 +32,11 @@ padding-horizontal: 16
 padding-vertical: 8
 margin-left: $fpm.space.space-4
 width: 400
-height: 40
+height: $height
 border-width: 2
 border-color: $fpm.color.main.border
 border-radius: 8
+multiline: $multiline
 $on-input$: $value=$VALUE
 $on-focus$: $error=
 
@@ -51,6 +47,23 @@ $on-focus$: $error=
 role: $fpm.type.copy-relaxed
 padding-left: 136
 color: $fpm.color.main.error.text
+
+
+-- ftd.row button:
+caption text:
+border-width: 2
+border-radius: 10
+border-color: $transparent-color
+background-color: $fpm.color.main.custom.two
+padding: 10
+margin-top: 100
+margin-left: 250
+
+--- ftd.text: $text
+role: $fpm.type.heading-small
+color: $black
+style: bold
+width: fill
 
 
 -- optional string title:
@@ -73,22 +86,44 @@ $always-include$: true
 $always-include$: true
 
 
+-- ftd.column:
+width: percent 80
+align: center
+
+-- ftd.text: ADD NEW TODO
+role: $fpm.type.heading-large
+text-align: center
+style: bold
+margin-top: $fpm.space.space-8
+padding-left: 30
+align: center
+
+
 -- input-box: Title
 $value: $title
 $error: $title-error
 placeholder: Title of the todo
+align: center
 
 
 -- input-box: Status
 $value: $status
 $error: $status-error
 placeholder: Status of the todo
+align: center
 
 -- input-box: Description
 $value: $description
 $error: $description-error
 placeholder: Description of the todo
+multiline: true
+height: 100
+align: center
 
+
+-- button: Add TODO
+$on-click$: message-host $add-api
+align: center
 
 -- ftd.color transparent-color:
 light: rgba(255,255,255,0)
@@ -97,30 +132,6 @@ dark: rgba(255,255,255,0)
 -- ftd.color black:
 light: black
 dark: black
-
-
--- ftd.row button:
-caption text:
-border-width: 2
-border-radius: 10
-border-color: $transparent-color
-background-color: $fpm.color.main.custom.two
-height: 50
-width: 150
-align: center
-
-
---- ftd.text: $text
-role: $fpm.type.heading-small
-color: $black
-style: bold
-width: fill
-text-align: center
-align: center
-
-
--- button: Add TODO
-$on-click$: message-host $add-api
 
 
 -- object add-api:
