@@ -9,24 +9,26 @@ padding-left: 30
 
 
 ;; Input Box with Label
--- ftd.row input-box:
+-- ftd.column input-box:
 caption label:
 optional string placeholder:
 optional string $value:
 optional string $error:
 padding-left: $fpm.space.space-7
-margin-top: $fpm.space.space-3
+margin-top: $fpm.space.space-7
 height: 50
 align: left
 
+--- ftd.row:
+width: fill
+
+
 ;; Input Box Label
 --- ftd.text: $label
-padding-left: $fpm.space.space-7
 role: $fpm.type.copy-large
-align: left
 text-align: right
 style: bold
-width: 170
+width: 120
 
 ;; Input Box
 --- ftd.input:
@@ -40,9 +42,15 @@ border-width: 2
 border-color: $fpm.color.main.border
 border-radius: 8
 $on-input$: $value=$VALUE
+$on-focus$: $error=
+
+--- container: ftd.main
 
 ;; input error
 --- ftd.text: $error
+role: $fpm.type.copy-relaxed
+padding-left: 136
+color: $fpm.color.main.error.text
 
 
 -- optional string title:
@@ -122,6 +130,6 @@ url: /api/add-todo/
 title: $title
 status: $status
 description: $description
-title-error: kameri-app/add-todo/#title-error
-status-error: kameri-app/add-todo/#status-error
-description-error: kameri-app/add-todo/#description-error
+$title-error: $title-error
+$status-error: $status-error
+$description-error: $description-error
