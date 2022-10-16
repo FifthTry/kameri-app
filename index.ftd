@@ -2,6 +2,12 @@
 -- import: kameri-app/assets
 -- import: kameri-app/utils
 
+-- boolean is-mobile: false
+
+-- is-mobile:true
+if: $ftd.device == mobile
+
+
 -- optional string todo-status:
 $always-include$: true
 
@@ -18,9 +24,10 @@ string description:
 
 -- ftd.column list-todo:
 todo list todos:
-width: percent 80
+width: fill
 padding-vertical: 20
-padding-horizontal: 50
+padding-horizontal if not $is-mobile: 150
+padding-horizontal if $is-mobile: 20
 spacing: 30
 align: center
 
@@ -33,8 +40,10 @@ spacing: space-between
 role: $fpm.type.heading-large
 style: bold
 
---- utils.button: Add TODO
+--- button.button: Add TODO
+role: primary
 link: /add-todo/
+large: true
 
 --- container: ftd.main
 
@@ -47,10 +56,15 @@ todo todo:
 spacing: 30
 width: fill
 border-color: $utils.black
-border-radius: 10
+border-radius: 6
 padding: 15
 string status: $todo.status
-background-color: $fpm.main.success.base
+background-color if $status == in progress: $fpm.main.success.base
+background-color if $status == In Progress: $fpm.main.success.base
+background-color if $status == done: $fpm.color.main.accent.tertiary
+background-color if $status == Done: $fpm.color.main.accent.tertiary
+background-color if $status == Open: $fpm.color.main.info.base
+background-color if $status == open: $fpm.color.main.info.base
 shadow-color: $fpm.color.main.cta-tertiary.border
 shadow-offset-x: 1
 shadow-offset-y: 2
@@ -68,23 +82,45 @@ role: $fpm.type.heading-small
 
 
 --- ftd.row:
+if: not $is-mobile
 spacing: 20
-
 
 --- ftd.input:
 value: $status
 border-width: 1
-border-radius: 5
+border-radius: 4
 padding: 5
 $on-input$: $status=$VALUE
 background-color: $fpm.main.text-strong
 
-
---- utils.update-button: Update
+--- button.button: Update
+role: secondary
+small: true
 $on-click$: $todo-status = $status
 $on-click$: $todo-id = $todo.id
 $on-click$: message-host $update-status-api
 
+
+--- container: ftd.main
+
+--- ftd.column:
+if: $is-mobile
+spacing: 20
+
+--- ftd.input:
+value: $status
+border-width: 1
+border-radius: 4
+padding: 5
+$on-input$: $status=$VALUE
+background-color: $fpm.main.text-strong
+
+--- button.button: Update
+role: secondary
+small: true
+$on-click$: $todo-status = $status
+$on-click$: $todo-id = $todo.id
+$on-click$: message-host $update-status-api
 
 --- container: ftd.main
 
