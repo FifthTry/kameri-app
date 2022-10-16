@@ -6,96 +6,7 @@
 if: $ftd.device == mobile
 
 
-;; Input Box with Label
--- ftd.column input-box:
-caption label:
-optional string placeholder:
-optional string $value:
-optional string $error:
-boolean label-top: false
-boolean multiline: false
-string width: 400
-string height: 40
-margin-top: $fpm.space.space-6
-color: $fpm.color.main.text
-width if $is-mobile: fill
 
---- ftd.row:
-if: not $label-top
-width: fill
-
-;; Input Box Label
---- ftd.text: $label
-role: $fpm.type.copy-large
-text-align: right
-min-width if not $is-mobile: 120
-min-width if $is-mobile: 100
-
-;; Input Box
---- ftd.input:
-placeholder: $placeholder
-padding-horizontal: 16
-padding-vertical: 8
-margin-left: $fpm.space.space-4
-width if not $is-mobile: $width
-width if $is-mobile: 200
-height: $height
-border-width: 1
-border-color: $fpm.color.main.border
-border-radius: 8
-multiline: $multiline
-$on-input$: $value=$VALUE
-$on-focus$: $error=
-role: $fpm.type.copy-tight
-
---- container: ftd.main
-
---- ftd.column:
-if: $label-top
-width: fill
-
-;; Input Box Label
---- ftd.text: $label
-role: $fpm.type.copy-large
-padding-left if not $is-mobile: $fpm.space.space-4
-
-;; Input Box
---- ftd.input:
-placeholder: $placeholder
-padding-horizontal: 16
-padding-vertical: 8
-margin-left if not $is-mobile: $fpm.space.space-4
-width if not $is-mobile: $width
-width if $is-mobile: fill
-height: $height
-border-width: 1
-border-color: $fpm.color.main.border
-border-radius: 8
-multiline: $multiline
-$on-input$: $value=$VALUE
-$on-focus$: $error=
-
---- container: ftd.main
-
-;; input error
---- ftd.text: $error
-if: not $is-mobile
-role: $fpm.type.copy-relaxed
-padding-left if not $is-mobile: $fpm.space.space-4
-color: $fpm.color.main.error.text
-padding-left if not $label-top: 136
-margin-top: $fpm.space.space-1
-
---- container: ftd.main
-
-
-;; input error
---- ftd.text: $error
-if: $is-mobile
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.error.text
-padding-left if not $label-top: 116
-margin-top: $fpm.space.space-1
 
 
 
@@ -152,19 +63,19 @@ style: bold
 align: center
 
 
--- input-box: Title
+-- form.input-box: Title
 $value: $title
 $error: $title-error
 placeholder: Title of the todo
 align: center
 
--- input-box: Status
+-- form.input-box: Status
 $value: $status
 $error: $status-error
 placeholder: e.g. In Progress, Done, Todo etc.
 align: center
 
--- input-box: Description
+-- form.input-box: Description
 $value: $description
 $error: $description-error
 placeholder: Description of the todo
