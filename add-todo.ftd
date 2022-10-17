@@ -1,55 +1,18 @@
 -- import: fpm
 
+-- boolean is-mobile: false
 
-;; Input Box with Label
--- ftd.column input-box:
-caption label:
-optional string placeholder:
-optional string $value:
-optional string $error:
-boolean multiline: false
-string height: 40
-padding-left: $fpm.space.space-7
-margin-top: $fpm.space.space-7
-height: 50
+-- is-mobile:true
+if: $ftd.device == mobile
 
 
---- ftd.row:
-width: fill
 
 
-;; Input Box Label
---- ftd.text: $label
-role: $fpm.type.copy-large
-text-align: right
-style: bold
-width: 120
-
-;; Input Box
---- ftd.input:
-placeholder: $placeholder
-padding-horizontal: 16
-padding-vertical: 8
-margin-left: $fpm.space.space-4
-width: 400
-height: $height
-border-width: 2
-border-color: $fpm.color.main.border
-border-radius: 8
-multiline: $multiline
-$on-input$: $value=$VALUE
-$on-focus$: $error=
-
---- container: ftd.main
-
-;; input error
---- ftd.text: $error
-role: $fpm.type.copy-relaxed
-padding-left: 136
-color: $fpm.color.main.error.text
 
 
--- ftd.row button:
+
+
+-- ftd.row button1:
 caption text:
 border-width: 2
 border-radius: 10
@@ -87,32 +50,32 @@ $always-include$: true
 
 
 -- ftd.column:
-width: percent 80
+width: fill
+padding-vertical: 20
+padding-horizontal if not $is-mobile: 150
+padding-horizontal if $is-mobile: 20
 align: center
 
 -- ftd.text: ADD NEW TODO
 role: $fpm.type.heading-large
 text-align: center
 style: bold
-margin-top: $fpm.space.space-8
-padding-left: 30
 align: center
 
 
--- input-box: Title
+-- form.input-box: Title
 $value: $title
 $error: $title-error
 placeholder: Title of the todo
 align: center
 
-
--- input-box: Status
+-- form.input-box: Status
 $value: $status
 $error: $status-error
-placeholder: Status of the todo
+placeholder: e.g. In Progress, Done, Todo etc.
 align: center
 
--- input-box: Description
+-- form.input-box: Description
 $value: $description
 $error: $description-error
 placeholder: Description of the todo
@@ -121,9 +84,23 @@ height: 100
 align: center
 
 
--- button: Add TODO
+--- ftd.column:
+margin-left if not $is-mobile: 150
+margin-left if $is-mobile: 120
+margin-top: $fpm.space.space-4
+
+--- button.button: Add TODO
+role: primary
+large: true
 $on-click$: message-host $add-api
-align: center
+
+
+
+
+
+
+
+
 
 -- ftd.color transparent-color:
 light: rgba(255,255,255,0)
