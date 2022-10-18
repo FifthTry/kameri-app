@@ -1,6 +1,7 @@
 -- import: fpm
 -- import: kameri-app/assets
 -- import: kameri-app/utils
+-- import: kameri-app/add-todo 
 
 -- boolean is-mobile: false
 
@@ -51,6 +52,18 @@ large: true
 $loop$: $todos as $todo
 todo: $todo
 
+
+
+
+
+
+
+
+
+
+
+
+
 -- ftd.column display-todo:
 todo todo:
 spacing: 30
@@ -85,13 +98,11 @@ role: $fpm.type.heading-small
 if: not $is-mobile
 spacing: 20
 
---- ftd.input:
-value: $status
-border-width: 1
-border-radius: 4
-padding: 5
-$on-input$: $status=$VALUE
-background-color: $fpm.main.text-strong
+--- add-todo.select-status:
+status-list: $add-todo.status-list
+$selected-valued: $status
+align: center
+small: true
 
 --- button.button: Update
 role: secondary
@@ -143,3 +154,6 @@ method: post
 url: /api/update-todo/
 id: $todo-id
 status: $todo-status
+
+
+
