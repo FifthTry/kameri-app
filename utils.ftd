@@ -46,3 +46,255 @@ color: $fpm.color.main.text-strong
 width: fill
 text-align: center
 link: $link
+
+
+
+-- boolean is-mobile: false
+
+-- is-mobile:true
+if: $ftd.device == mobile
+
+
+-- fpm.toc-item list status-list:
+$processor$: toc
+
+- In Progress: /
+- Todo : /
+- Open : /
+- Closed : /
+- On Hold : /
+
+
+
+
+-- ftd.column select-status:
+optional string label:
+fpm.toc-item list status-list:
+boolean open: false
+$on-click$: toggle $open
+$on-click-outside$: $open= false
+boolean label-top: false
+boolean multiline: false
+string width: 400
+string height: 40
+string $selected-valued: Todo
+margin-top: $fpm.space.space-6
+color: $fpm.color.main.text
+width if $is-mobile: fill
+boolean large: false
+boolean small: false
+boolean extra-large: false
+boolean medium: true
+boolean disable: false
+
+--- ftd.row:
+if: not $disable
+width: fill
+
+
+--- ftd.text: $label
+if: $label is not null
+role: $fpm.type.copy-large
+text-align: right
+min-width if not $is-mobile: 120
+min-width if $is-mobile: 100
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if not $is-mobile: fill
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width if $extra-large: 800
+height if $extra-large: 80
+width if $large: 600
+height if $large: 60
+width if $medium: 400
+height if $medium: 40
+width if $small: 180
+height if $small: 30
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical if $extra-large: $fpm.space.space-6
+padding-horizontal if $extra-large: $fpm.space.space-6
+padding-vertical if $large: $fpm.space.space-3
+padding-horizontal if $large: $fpm.space.space-4
+padding-vertical if $medium: $fpm.space.space-2
+padding-horizontal if $medium: $fpm.space.space-4
+padding-vertical if $small: $fpm.space.space-1
+padding-horizontal if $small: $fpm.space.space-2
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+position: center
+move-right: -20
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical if $extra-large: $fpm.space.space-6
+padding-horizontal if $extra-large: $fpm.space.space-6
+padding-vertical if $large: $fpm.space.space-3
+padding-horizontal if $large: $fpm.space.space-4
+padding-vertical if $medium: $fpm.space.space-2
+padding-horizontal if $medium: $fpm.space.space-4
+padding-vertical if $small: $fpm.space.space-1
+padding-horizontal if $small: $fpm.space.space-2
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+id: down-container
+
+--- ftd.column:
+width: percent 25
+
+--- container: down-container
+
+--- ftd.column:
+width: percent 75
+
+--- ftd.column:
+if: $open
+width: fill
+anchor: parent
+z-index: 4
+top: -2
+background-color: $fpm.color.main.background.step-1
+left: 0
+border-radius: 8
+padding-vertical: 12
+
+--- show-children:
+if: $status-list is not empty
+title: $obj.title
+$loop$: $status-list as $obj
+$selected-valued: $selected-valued
+
+
+--- container: ftd.main
+
+
+--- ftd.row:
+if: $disable
+width: fill
+background-color: $fpm.color.main.border
+
+--- ftd.text: Status
+role: $fpm.type.copy-large
+text-align: right
+min-width if not $is-mobile: 120
+min-width if $is-mobile: 100
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if not $is-mobile: fill
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width if $extra-large: 800
+height if $extra-large: 80
+width if $large: 600
+height if $large: 60
+width if $medium: 400
+height if $medium: 40
+width if $small: 200
+height if $small: 20
+placeholder: $selected-valued
+$on-input$: $selected-valued = $VALUE
+border-color: $fpm.color.main.border
+padding-vertical if $extra-large: $fpm.space.space-6
+padding-horizontal if $extra-large: $fpm.space.space-6
+padding-vertical if $large: $fpm.space.space-3
+padding-horizontal if $large: $fpm.space.space-4
+padding-vertical if $medium: $fpm.space.space-2
+padding-horizontal if $medium: $fpm.space.space-4
+padding-vertical if $small: $fpm.space.space-1
+padding-horizontal if $small: $fpm.space.space-2
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+position: center
+move-right: -20
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical if $extra-large: $fpm.space.space-6
+padding-horizontal if $extra-large: $fpm.space.space-6
+padding-vertical if $large: $fpm.space.space-3
+padding-horizontal if $large: $fpm.space.space-4
+padding-vertical if $medium: $fpm.space.space-2
+padding-horizontal if $medium: $fpm.space.space-4
+padding-vertical if $small: $fpm.space.space-1
+padding-horizontal if $small: $fpm.space.space-2
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+id: down-container
+
+--- ftd.column:
+width: percent 25
+
+--- container: down-container
+
+--- ftd.column:
+width: percent 75
+
+--- ftd.column:
+if: $open
+width: fill
+anchor: parent
+z-index: 4
+top: -2
+background-color: $fpm.color.main.background.step-1
+left: 0
+border-radius: 8
+padding-vertical: 12
+
+--- show-children:
+if: $status-list is not empty
+title: $obj.title
+$loop$: $status-list as $obj
+$selected-valued: $selected-valued
+
+
+
+
+
+
+
+
+
+
+-- ftd.row show-children:
+width: fill
+background-color if $MOUSE-IN:$fpm.color.main.cta-secondary.base
+caption title:
+padding-horizontal:12
+padding-vertical:4
+string $selected-valued:
+
+--- ftd.text: $title
+padding-left: 12
+$on-click$: $selected-valued = $title
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+white-space: nowrap
+width: fill

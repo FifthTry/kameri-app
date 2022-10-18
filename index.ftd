@@ -1,7 +1,6 @@
 -- import: fpm
 -- import: kameri-app/assets
 -- import: kameri-app/utils
--- import: kameri-app/add-todo 
 
 -- boolean is-mobile: false
 
@@ -40,6 +39,8 @@ spacing: space-between
 --- ftd.text: All TODOs
 role: $fpm.type.heading-large
 style: bold
+
+--- ftd.column:
 
 --- button.button: Add TODO
 role: primary
@@ -98,8 +99,8 @@ role: $fpm.type.heading-small
 if: not $is-mobile
 spacing: 20
 
---- add-todo.select-status:
-status-list: $add-todo.status-list
+--- utils.select-status:
+status-list: $utils.status-list
 $selected-valued: $status
 align: center
 small: true
