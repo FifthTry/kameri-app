@@ -212,7 +212,7 @@ value: $selected-valued
 cursor: pointer
 width if not $is-mobile: fill
 width if $is-mobile: 200
-margin-left: $fpm.space.space-4
+margin-left if not $is-mobile: $fpm.space.space-4
 height: fill
 color: $fpm.color.main.text
 border-radius: 8
