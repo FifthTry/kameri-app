@@ -95,6 +95,7 @@ id: show-container
 
 --- ftd.row:
 width: fill
+id: switch-container
 
 
 --- ftd.text: $label
@@ -104,36 +105,118 @@ text-align: right
 min-width if not $is-mobile: 120
 min-width if $is-mobile: 100
 
+
+--- ftd.row:
+if: $small
+
+
 --- ftd.input:
 role: $fpm.type.copy-tight
 value: $selected-valued
 cursor: pointer
-width if not $is-mobile: fill
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 120
+height: 30
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-1
+padding-horizontal : $fpm.space.space-2
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 6
+padding-vertical: $fpm.space.space-1
+padding-horizontal: $fpm.space.space-2
+
+
+--- container: switch-container
+
+
+
+--- ftd.row:
+if: $extra-large
+
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
 height: fill
 color: $fpm.color.main.text
 border-radius: 8
 border-width: 1
-width if $extra-large: 800
-height if $extra-large: 80
-width if $large: 600
-height if $large: 60
-width if $medium: 400
-height if $medium: 40
-width if $small: 120
-height if $small: 30
+width: 800
+height: 80
 placeholder: $selected-valued
 $on-input$: $selected-valued= $VALUE
 border-color: $fpm.color.main.border
-padding-vertical if $extra-large: $fpm.space.space-6
-padding-horizontal if $extra-large: $fpm.space.space-6
-padding-vertical if $large: $fpm.space.space-3
-padding-horizontal if $large: $fpm.space.space-4
-padding-vertical if $medium: $fpm.space.space-2
-padding-horizontal if $medium: $fpm.space.space-4
-padding-vertical if $small: $fpm.space.space-1
-padding-horizontal if $small: $fpm.space.space-2
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+
+
+
+--- container: switch-container
+
+
+
+--- ftd.row:
+if: $large
+
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 600
+height: 60
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-3
+padding-horizontal: $fpm.space.space-4
 background-color if primary: $fpm.color.main.cta-primary.base
 background-color if secondary: $fpm.color.main.cta-secondary.base
 background-color if tertiary: $fpm.color.main.cta-tertiary.base
@@ -145,21 +228,57 @@ color: $fpm.color.main.text
 color if primary: $fpm.color.main.text-strong
 color if secondary: $fpm.color.main.text-strong
 color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical: $fpm.space.space-3
+padding-horizontal : $fpm.space.space-4
 
+
+
+--- container: switch-container
+
+--- ftd.row:
+if: $medium
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 400
+height: 40
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-2
+padding-horizontal : $fpm.space.space-4
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color : $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
 position: center
 anchor: parent
 top: 0
 right: 0
 padding-top: 12
 padding-top if $small: 6
-padding-vertical if $extra-large: $fpm.space.space-6
-padding-horizontal if $extra-large: $fpm.space.space-6
-padding-vertical if $large: $fpm.space.space-3
-padding-horizontal if $large: $fpm.space.space-4
-padding-vertical if $medium: $fpm.space.space-2
-padding-horizontal if $medium: $fpm.space.space-4
-padding-vertical if $small: $fpm.space.space-1
-padding-horizontal if $small: $fpm.space.space-2
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-4
 
 --- container: show-container
 
