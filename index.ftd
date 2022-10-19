@@ -119,13 +119,11 @@ $on-click$: message-host $update-status-api
 if: $is-mobile
 spacing: 20
 
---- ftd.input:
-value: $status
-border-width: 1
-border-radius: 4
-padding: 5
-$on-input$: $status=$VALUE
-background-color: $fpm.main.text-strong
+--- utils.select-status:
+status-list: $utils.status-list
+$selected-valued: $status
+align: center
+small: true
 
 --- button.button: Update
 role: secondary
