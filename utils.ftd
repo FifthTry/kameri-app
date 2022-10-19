@@ -58,22 +58,11 @@ if: $ftd.device == mobile
 -- fpm.toc-item list status-list:
 $processor$: toc
 
-- In Progress: /
 - Todo : /
 - Open : /
 - Closed : /
 - On Hold : /
 - In Progress: /
-- Todo : /
-- Open : /
-- Closed : /
-- On Hold : /
-- In Progress: /
-- Todo : /
-- Open : /
-- Closed : /
-- On Hold : /
-
 
 
 -- ftd.column select-status:
@@ -152,7 +141,7 @@ anchor: parent
 top: 0
 right: 0
 padding-top: 12
-padding-top if $small: 10
+padding-top if $small: 6
 padding-vertical if $extra-large: $fpm.space.space-6
 padding-horizontal if $extra-large: $fpm.space.space-6
 padding-vertical if $large: $fpm.space.space-3
@@ -170,12 +159,13 @@ id: down-container
 
 --- ftd.column:
 width if $label is not null: percent 25
+width: percent 11
 
 --- container: down-container
 
 --- ftd.column:
 width if $label is not null: percent 75
-width: fill
+width: percent 89
 
 
 --- ftd.column:
@@ -256,7 +246,7 @@ anchor: parent
 top: 0
 right: 0
 padding-top: 12
-padding-top if $small: 10
+padding-top if $small: 6
 padding-vertical if $extra-large: $fpm.space.space-6
 padding-horizontal if $extra-large: $fpm.space.space-6
 padding-vertical if $large: $fpm.space.space-3
