@@ -63,7 +63,11 @@ todo: $todo
 
 
 
-
+- Todo : /
+- Open : /
+- Closed : /
+- On Hold : /
+- In Progress: /
 
 -- ftd.column display-todo:
 todo todo:
@@ -73,12 +77,12 @@ border-color: $utils.black
 border-radius: 6
 padding: 15
 string status: $todo.status
-background-color if $status == in progress: $fpm.main.success.base
-background-color if $status == In Progress: $fpm.main.success.base
-background-color if $status == done: $fpm.color.main.accent.tertiary
-background-color if $status == Done: $fpm.color.main.accent.tertiary
-background-color if $status == Open: $fpm.color.main.info.base
-background-color if $status == open: $fpm.color.main.info.base
+background-color: $fpm.color.main.text
+background-color if $status == Todo: $fpm.color.main.custom.three
+background-color if $status == Open: $fpm.color.main.success.base
+background-color if $status == Closed: $fpm.color.main.error.base
+background-color if $status == On Hold: $fpm.color.main.accent.tertiary
+background-color if $status == In Progress: $fpm.color.main.custom.seven
 shadow-color: $fpm.color.main.cta-tertiary.border
 shadow-offset-x: 1
 shadow-offset-y: 2
