@@ -7,4 +7,3 @@
 # heroku apps:destroy kameri-app
 # heroku git:remote -a kameri-app
 # git push heroku main
-#
