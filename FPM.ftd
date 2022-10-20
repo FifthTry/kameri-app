@@ -1,0 +1,21 @@
+-- import: fpm
+
+-- fpm.package: kameri-app
+download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
+endpoint: https://kameri-service.herokuapp.com
+
+-- fpm.dependency: fifthtry.github.io/doc-site as ds
+-- fpm.dependency: fifthtry.github.io/button as button
+-- fpm.dependency: fifthtry.github.io/form as form
+
+-- fpm.auto-import: ds
+-- fpm.auto-import: button
+-- fpm.auto-import: form
+
+
+-- fpm.sitemap:
+
+# App: /
+
+- Add Todo: /add-todo/
+- List Todo: /
