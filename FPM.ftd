@@ -2,7 +2,7 @@
 
 -- fpm.package: kameri-app
 download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
-endpoint: http://127.0.0.1:8001
+endpoint: https://kameri-service.herokuapp.com
 
 -- fpm.dependency: fifthtry.github.io/doc-site as ds
 -- fpm.dependency: fifthtry.github.io/button as button
