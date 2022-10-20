@@ -46,3 +46,292 @@ color: $fpm.color.main.text-strong
 width: fill
 text-align: center
 link: $link
+
+
+
+-- boolean is-mobile: false
+
+-- is-mobile:true
+if: $ftd.device == mobile
+
+
+-- fpm.toc-item list status-list:
+$processor$: toc
+
+- Todo : /
+- Open : /
+- Closed : /
+- On Hold : /
+- In Progress: /
+
+
+-- ftd.column select-status:
+optional string label:
+fpm.toc-item list status-list:
+boolean open: false
+boolean label-top: false
+boolean multiline: false
+string width: 400
+string height: 40
+string $selected-valued: Todo
+margin-top: $fpm.space.space-6
+color: $fpm.color.main.text
+width if $is-mobile: fill
+boolean large: false
+boolean small: false
+boolean extra-large: false
+boolean medium: true
+boolean primary: false
+boolean seconadary: false
+boolean tertairy: false
+
+
+
+--- ftd.column:
+$on-click$: toggle $open
+$on-click-outside$: $open= false
+width: fill
+id: show-container
+
+--- ftd.row:
+width: fill
+id: switch-container
+
+
+--- ftd.text: $label
+if: $label is not null
+role: $fpm.type.copy-large
+text-align: right
+min-width if not $is-mobile: 120
+min-width if $is-mobile: 100
+
+
+--- ftd.row:
+if: $small
+
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 120
+height: 30
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-1
+padding-horizontal : $fpm.space.space-2
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 6
+padding-vertical: $fpm.space.space-1
+padding-horizontal: $fpm.space.space-2
+
+
+--- container: switch-container
+
+
+
+--- ftd.row:
+if: $extra-large
+
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 800
+height: 80
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+
+
+
+--- container: switch-container
+
+
+
+--- ftd.row:
+if: $large
+
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 600
+height: 60
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-3
+padding-horizontal: $fpm.space.space-4
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color : $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-vertical: $fpm.space.space-3
+padding-horizontal : $fpm.space.space-4
+
+
+
+--- container: switch-container
+
+--- ftd.row:
+if: $medium
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+value: $selected-valued
+cursor: pointer
+width if $is-mobile: 200
+margin-left: $fpm.space.space-4
+height: fill
+color: $fpm.color.main.text
+border-radius: 8
+border-width: 1
+width: 400
+height: 40
+placeholder: $selected-valued
+$on-input$: $selected-valued= $VALUE
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-2
+padding-horizontal : $fpm.space.space-4
+background-color if primary: $fpm.color.main.cta-primary.base
+background-color if secondary: $fpm.color.main.cta-secondary.base
+background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color : $fpm.color.main.text-strong
+
+--- ftd.text: ﹀
+if: $status-list is not empty
+color: $fpm.color.main.text
+color if primary: $fpm.color.main.text-strong
+color if secondary: $fpm.color.main.text-strong
+color if tertiary: $fpm.color.main.text-strong
+position: center
+anchor: parent
+top: 0
+right: 0
+padding-top: 12
+padding-top if $small: 6
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-4
+
+--- container: show-container
+
+--- ftd.row:
+width: fill
+id: down-container
+
+--- ftd.column:
+width if $label is not null: percent 25
+width: percent 11
+
+--- container: down-container
+
+--- ftd.column:
+width if $label is not null: percent 75
+width: percent 89
+
+
+--- ftd.column:
+if: $open
+width: fill
+anchor: parent
+z-index: 4
+top: -2
+background-color: $fpm.color.main.background.step-1
+left: 0
+border-radius: 8
+padding-vertical: 12
+max-height: 240
+overflow-y: auto
+
+--- show-children:
+if: $status-list is not empty
+title: $obj.title
+$loop$: $status-list as $obj
+$selected-valued: $selected-valued
+
+
+
+
+
+-- ftd.row show-children:
+width: fill
+background-color if $MOUSE-IN:$fpm.color.main.cta-secondary.base
+caption title:
+padding-horizontal:12
+padding-vertical:4
+string $selected-valued:
+
+--- ftd.text: $title
+padding-left: 12
+$on-click$: $selected-valued = $title
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+white-space: nowrap
+width: fill

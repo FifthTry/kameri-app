@@ -40,6 +40,8 @@ spacing: space-between
 role: $fpm.type.heading-large
 style: bold
 
+--- ftd.column:
+
 --- button.button: Add TODO
 role: primary
 link: /add-todo/
@@ -51,6 +53,22 @@ large: true
 $loop$: $todos as $todo
 todo: $todo
 
+
+
+
+
+
+
+
+
+
+
+- Todo : /
+- Open : /
+- Closed : /
+- On Hold : /
+- In Progress: /
+
 -- ftd.column display-todo:
 todo todo:
 spacing: 30
@@ -59,12 +77,12 @@ border-color: $utils.black
 border-radius: 6
 padding: 15
 string status: $todo.status
-background-color if $status == in progress: $fpm.main.success.base
-background-color if $status == In Progress: $fpm.main.success.base
-background-color if $status == done: $fpm.color.main.accent.tertiary
-background-color if $status == Done: $fpm.color.main.accent.tertiary
-background-color if $status == Open: $fpm.color.main.info.base
-background-color if $status == open: $fpm.color.main.info.base
+background-color: $fpm.color.main.text
+background-color if $status == Todo: $fpm.color.main.custom.three
+background-color if $status == Open: $fpm.color.main.success.base
+background-color if $status == Closed: $fpm.color.main.error.base
+background-color if $status == On Hold: $fpm.color.main.accent.tertiary
+background-color if $status == In Progress: $fpm.color.main.custom.seven
 shadow-color: $fpm.color.main.cta-tertiary.border
 shadow-offset-x: 1
 shadow-offset-y: 2
@@ -85,13 +103,11 @@ role: $fpm.type.heading-small
 if: not $is-mobile
 spacing: 20
 
---- ftd.input:
-value: $status
-border-width: 1
-border-radius: 4
-padding: 5
-$on-input$: $status=$VALUE
-background-color: $fpm.main.text-strong
+--- utils.select-status:
+status-list: $utils.status-list
+$selected-valued: $status
+align: center
+small: true
 
 --- button.button: Update
 role: secondary
@@ -107,13 +123,11 @@ $on-click$: message-host $update-status-api
 if: $is-mobile
 spacing: 20
 
---- ftd.input:
-value: $status
-border-width: 1
-border-radius: 4
-padding: 5
-$on-input$: $status=$VALUE
-background-color: $fpm.main.text-strong
+--- utils.select-status:
+status-list: $utils.status-list
+$selected-valued: $status
+align: center
+small: true
 
 --- button.button: Update
 role: secondary
@@ -143,3 +157,6 @@ method: post
 url: /api/update-todo/
 id: $todo-id
 status: $todo-status
+
+
+
