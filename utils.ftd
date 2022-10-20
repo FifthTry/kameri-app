@@ -55,28 +55,35 @@ link: $link
 if: $ftd.device == mobile
 
 
--- fpm.toc-item list status-list:
-$processor$: toc
+-- record status:
+string status:
 
-- Todo : /
-- Open : /
-- Closed : /
-- On Hold : /
-- In Progress: /
+-- status list status-list:
+
+-- status-list:
+status: Todo
+
+-- status-list:
+status: Open
+
+-- status-list:
+status: Closed
+
+-- status-list:
+status: On Hold
+
+-- status-list:
+status: In Progress
+
 
 
 -- ftd.column select-status:
 optional string label:
-fpm.toc-item list status-list:
+status list status-list:
+string $selected-value: Todo
 boolean open: false
 boolean label-top: false
 boolean multiline: false
-string width: 400
-string height: 40
-string $selected-valued: Todo
-margin-top: $fpm.space.space-6
-color: $fpm.color.main.text
-width if $is-mobile: fill
 boolean large: false
 boolean small: false
 boolean extra-large: false
@@ -84,17 +91,21 @@ boolean medium: false
 boolean primary: false
 boolean secondary: false
 boolean tertiary: false
+string width: 400
+string height: 40
+margin-top: $fpm.space.space-6
+color: $fpm.color.main.text
+width if $is-mobile: fill
 
 --- ftd.column:
 $on-click$: toggle $open
-$on-click-outside$: $open= false
+$on-click-outside$: $open = false
 width: fill
 id: show-container
 
 --- ftd.row:
 width: fill
 id: switch-container
-
 
 --- ftd.text: $label
 if: $label is not null
@@ -103,24 +114,22 @@ text-align: right
 min-width if not $is-mobile: 120
 min-width if $is-mobile: 100
 
-
 --- ftd.row:
 if: $small
 
-
 --- ftd.input:
 role: $fpm.type.copy-tight
-value: $selected-valued
+color: $fpm.color.main.text
+value: $selected-value
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
-color: $fpm.color.main.text
 border-radius: 8
 border-width: 1
 width: 120
 height: 30
-placeholder: $selected-valued
-$on-input$: $selected-valued= $VALUE
+placeholder: $selected-value
+$on-input$: $selected-value= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-1
 padding-horizontal : $fpm.space.space-2
@@ -143,18 +152,14 @@ padding-top: 6
 padding-vertical: $fpm.space.space-1
 padding-horizontal: $fpm.space.space-2
 
-
 --- container: switch-container
-
-
 
 --- ftd.row:
 if: $extra-large
 
-
 --- ftd.input:
 role: $fpm.type.copy-tight
-value: $selected-valued
+value: $selected-value
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
@@ -163,8 +168,8 @@ border-radius: 8
 border-width: 1
 width: 800
 height: 80
-placeholder: $selected-valued
-$on-input$: $selected-valued= $VALUE
+placeholder: $selected-value
+$on-input$: $selected-value= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
@@ -187,19 +192,14 @@ padding-top: 12
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 
-
-
 --- container: switch-container
-
-
 
 --- ftd.row:
 if: $large
 
-
 --- ftd.input:
 role: $fpm.type.copy-tight
-value: $selected-valued
+value: $selected-value
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
@@ -208,8 +208,8 @@ border-radius: 8
 border-width: 1
 width: 600
 height: 60
-placeholder: $selected-valued
-$on-input$: $selected-valued= $VALUE
+placeholder: $selected-value
+$on-input$: $selected-value= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-3
 padding-horizontal: $fpm.space.space-4
@@ -232,8 +232,6 @@ padding-top: 12
 padding-vertical: $fpm.space.space-3
 padding-horizontal : $fpm.space.space-4
 
-
-
 --- container: switch-container
 
 --- ftd.row:
@@ -241,7 +239,7 @@ if: $medium
 
 --- ftd.input:
 role: $fpm.type.copy-tight
-value: $selected-valued
+value: $selected-value
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
@@ -250,8 +248,8 @@ border-radius: 8
 border-width: 1
 width: 400
 height: 40
-placeholder: $selected-valued
-$on-input$: $selected-valued= $VALUE
+placeholder: $selected-value
+$on-input$: $selected-value= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-2
 padding-horizontal : $fpm.space.space-4
@@ -291,7 +289,6 @@ width: percent 11
 width if $label is not null: percent 75
 width: percent 89
 
-
 --- ftd.column:
 if: $open
 width: fill
@@ -307,9 +304,14 @@ overflow-y: auto
 
 --- show-children:
 if: $status-list is not empty
-title: $obj.title
+title: $obj.status
 $loop$: $status-list as $obj
-$selected-valued: $selected-valued
+$selected-value: $selected-value
+
+
+
+
+
 
 
 
@@ -321,11 +323,11 @@ background-color if $MOUSE-IN:$fpm.color.main.cta-secondary.base
 caption title:
 padding-horizontal:12
 padding-vertical:4
-string $selected-valued:
+string $selected-value:
 
 --- ftd.text: $title
 padding-left: 12
-$on-click$: $selected-valued = $title
+$on-click$: $selected-value = $title
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text-strong
 white-space: nowrap

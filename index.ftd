@@ -55,6 +55,15 @@ todo: $todo
 
 
 
+
+
+
+
+
+
+
+
+
 -- ftd.column display-todo:
 todo todo:
 spacing: 30
@@ -111,7 +120,7 @@ spacing: 20
 
 --- utils.select-status:
 status-list: $utils.status-list
-$selected-valued: $status
+$selected-value: $status
 align: center
 small: true
 

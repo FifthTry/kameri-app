@@ -29,21 +29,6 @@ $always-include$: true
 
 
 
--- ftd.row button1:
-caption text:
-border-width: 2
-border-radius: 10
-border-color: $transparent-color
-background-color: $fpm.color.main.custom.two
-padding: 10
-margin-top: 100
-margin-left: 250
-
---- ftd.text: $text
-role: $fpm.type.heading-small
-color: $black
-style: bold
-width: fill
 
 
 
@@ -70,7 +55,7 @@ align: center
 -- utils.select-status:
 label: Status
 status-list: $utils.status-list
-$selected-valued: $selected-status
+$selected-value: $selected-status
 align: center
 medium: true
 
@@ -110,7 +95,6 @@ dark: rgba(255,255,255,0)
 light: black
 dark: black
 
-
 -- object add-api:
 function: http
 method: post
@@ -121,6 +105,3 @@ description: $description
 $title-error: $title-error
 $status-error: $status-error
 $description-error: $description-error
-
-
-
