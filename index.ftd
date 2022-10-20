@@ -153,6 +153,7 @@ role: $fpm.type.copy-relaxed
 -- todo list todos:
 $processor$: http
 method: get
+/url: http://127.0.0.1:8001/api/todos/
 url: https://kameri-service.herokuapp.com/api/todos/
 
 -- list-todo:
