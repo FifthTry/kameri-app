@@ -3,22 +3,8 @@
     <head>
         <meta charset="UTF-8"><base href="/kameri-app/">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="/" />
-        <title>Welcome to the FPM Package Page</title>
+        <title>fpm-install.sh.ftd</title>
         <script type="ftd" id="ftd-data">{
-  "fpm#package-name": {
-    "value": "kameri-app",
-    "dependencies": {
-      "0,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
   "fpm#theme-color": {
     "value": "#1F5E6B",
     "dependencies": {}
@@ -679,310 +665,10 @@
     "value": false,
     "dependencies": {}
   },
-  "kameri-app/-/#body@0,0": {
-    "value": "Here you find everything that you want to know about this package.",
+  "kameri-app/fpm-install.sh/#content@0": {
+    "value": "#!/usr/bin/env bash\n\n# This script should be run via curl:\n# sh -c \"$(curl -fsSL https://fpm.dev/install.sh)\"\n# or via wget\n# sh -c \"$(wget -qO- https://fpm.dev/install.sh)\"\n\n# The [ -t 1 ] check only works when the function is not called from\n# a subshell (like in `$(...)` or `(...)`, so this hack redefines the\n# function at the top level to always return false when stdout is not\n# a tty.\nif [ -t 1 ]; then\n  is_tty() {\n    true\n  }\nelse\n  is_tty() {\n    false\n  }\nfi\n\n\ncommand_exists() {\n  command -v \"$@\" \u003E/dev/null 2\u003E\u00261\n}\n\nsetup_colors() {\n    if ! is_tty; then\n        FMT_RED=\"\"\n        FMT_GREEN=\"\"\n        FMT_YELLOW=\"\"\n        FMT_BLUE=\"\"\n        FMT_BOLD=\"\"\n        FMT_RESET=\"\"\n    else\n        FMT_RED=$(printf '\\033[31m')\n        FMT_GREEN=$(printf '\\033[32m')\n        FMT_YELLOW=$(printf '\\033[33m')\n        FMT_BLUE=$(printf '\\033[34m')\n        FMT_BOLD=$(printf '\\033[1m')\n        FMT_RESET=$(printf '\\033[0m')\n    fi\n}\n\n\n\nsetup() {\n    # Parse arguments\n    while [ $# -gt 0 ]; do\n        case $1 in\n            --pre-release) PRE_RELEASE=true ;;\n            --controller) CONTROLLER=true;;\n        esac\n    shift\n    done\n\n    if [[ $PRE_RELEASE ]]; then\n        URL=\"https://api.github.com/repos/fifthtry/fpm/releases\"\n        echo \"Downloading the latest pre-release binaries\"\n    else\n        URL=\"https://api.github.com/repos/fifthtry/fpm/releases/latest\"\n        echo \"Downloading the latest production ready binaries\"\n    fi\n\n    if [[ $CONTROLLER ]]; then\n        curl -L $URL | grep \".*\\/releases\\/download\\/.*\\/fpm_controller_linux.*\" | head -2 | cut -d : -f 2,3 | tee /dev/tty | xargs -I % curl -O -J -L %\n        mv fpm_controller_linux_musl_x86_64 \"fpm\"\n        mv fpm_controller_linux_musl_x86_64.d \"fpm.d\"\n    elif [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n        curl -L $URL | grep \".*\\/releases\\/download\\/.*\\/fpm_macos.*\" | head -1 | cut -d : -f 2,3 | tee /dev/tty | xargs -I % curl -O -J -L %\n        mv fpm_macos_x86_64 \"fpm\"\n    else\n        curl -L $URL | grep \".*\\/releases\\/download\\/.*\\/fpm_linux.*\" | head -2 | cut -d : -f 2,3 | tee /dev/tty | xargs -I % curl -O -J -L %\n        mv fpm_linux_musl_x86_64 \"fpm\"\n        mv fpm_linux_musl_x86_64.d \"fpm.d\"\n    fi\n    chmod +x \"fpm\"*\n}\n\nmain() {\n    setup_colors\n\n    if ! command_exists curl; then\n        echo \"${FMT_RED}curl command not found. Please install the curl utility and execute the script once again${FMT_RESET}\"\n        exit 1\n    fi\n    setup \"$@\"\n}\n\nmain \"$@\"",
     "dependencies": {
-      "0,0,1": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#body@0,0,1": {
-    "value": "Here you find everything that you want to know about this package.",
-    "dependencies": {
-      "0,0,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,2": {
-    "value": "Built with `fpm-cli` version",
-    "dependencies": {
-      "0,2,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,3": {
-    "value": "Git hash for `fpm-cli` build",
-    "dependencies": {
-      "0,3,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,4": {
-    "value": "`fpm-cli` build timestamp",
-    "dependencies": {
-      "0,4,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,5": {
-    "value": "Language:",
-    "dependencies": {
-      "0,5,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,6": {
-    "value": "Zip:",
-    "dependencies": {
-      "0,6,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,7": {
-    "value": "Build timestamp",
-    "dependencies": {
-      "0,7,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#key@0,8": {
-    "value": "FTD version",
-    "dependencies": {
-      "0,8,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#title@0,0": {
-    "value": "Welcome to the FPM Package Page",
-    "dependencies": {
-      "0,0,0": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,2": {
-    "value": "0.1.11",
-    "dependencies": {
-      "0,2": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,2,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,3": {
-    "value": "7e42e2383867ee4ceb1e3e521b58495979154a2a",
-    "dependencies": {
-      "0,3": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,3,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,4": {
-    "value": "0",
-    "dependencies": {
-      "0,4": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,4,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,5": {
-    "value": null,
-    "dependencies": {
-      "0,5": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,5,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,6": {
-    "value": null,
-    "dependencies": {
-      "0,6": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,6,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,7": {
-    "value": "1666268315281323072",
-    "dependencies": {
-      "0,7": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,7,1": [
-        {
-          "condition": null,
-          "dependency_type": "Value",
-          "parameters": {},
-          "remaining": null
-        },
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ]
-    }
-  },
-  "kameri-app/-/#value@0,8": {
-    "value": "",
-    "dependencies": {
-      "0,8": [
-        {
-          "condition": "$IsNotNull$",
-          "dependency_type": "Visible",
-          "parameters": {},
-          "remaining": null
-        }
-      ],
-      "0,8,1": [
+      "0": [
         {
           "condition": null,
           "dependency_type": "Value",
@@ -1133,7 +819,98 @@ body.fpm-dark .ft_md a {
 }</style>
     </head>
     <body>
-        <div data-id="main:root" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-wrap: nowrap; height: 100%; justify-content: flex-start; text-decoration: none; white-space: initial; width: 100%" ><div data-id="0:main" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; padding: 40px; text-decoration: none; white-space: initial; width: 100%" ><h1 data-id="0,0:main" id="welcome-to-the-fpm-package-page" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; padding-left: 90px; padding-right: 90px; text-decoration: none; white-space: initial; width: 100%" ><div data-id="0,0,0:main" style="border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; padding-bottom: 24px; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Welcome to the FPM Package Page</div><div data-id="0,0,1:main" style="border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; padding-bottom: 34px; padding-top: 50px; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Here you find everything that you want to know about this package.</div></h1><div data-id="0,1:main" style="border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; text-align: left; text-decoration: none; white-space: initial" class="ft_md">kameri-app</div><div data-id="0,2:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,2,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Built with <code>fpm-cli</code> version</div><div data-id="0,2,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-left: 2px; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">0.1.11</div></div><div data-id="0,3:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,3,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Git hash for <code>fpm-cli</code> build</div><div data-id="0,3,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-left: 2px; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">7e42e2383867ee4ceb1e3e521b58495979154a2a</div></div><div data-id="0,4:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,4,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md"><code>fpm-cli</code> build timestamp</div><div data-id="0,4,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-left: 2px; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">0</div></div><div data-id="0,5:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,5,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Language:</div><div data-id="0,5,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md"></div></div><div data-id="0,6:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,6,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Zip:</div><div data-id="0,6,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md"></div></div><div data-id="0,7:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,7,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">Build timestamp</div><div data-id="0,7,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-left: 2px; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">1666268315281323072</div></div><div data-id="0,8:main" data-spacing="margin-left:2px" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; margin-bottom: 5px; text-decoration: none; white-space: initial" ><div data-id="0,8,0:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md">FTD version</div><div data-id="0,8,1:main" style="align-self: center; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: none; margin-bottom: auto; margin-top: auto; text-align: left; text-decoration: none; white-space: initial" class="ft_md"></div></div></div></div><style>
+        <div data-id="main:root" style="align-items: flex-start; border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-wrap: nowrap; height: 100%; justify-content: flex-start; text-decoration: none; white-space: initial; width: 100%" ><div data-id="0:main" style="border-radius: 0px; border-style: solid; border-width: 0px; box-sizing: border-box; line-height: 26px; text-align: left; text-decoration: none; white-space: initial" ><pre style="background-color:#2b303b;"><span style="color:#65737e;">#!/usr/bin/env bash
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#65737e;"># This script should be run via curl:
+</span><span style="color:#65737e;"># sh -c &quot;$(curl -fsSL https://fpm.dev/install.sh)&quot;
+</span><span style="color:#65737e;"># or via wget
+</span><span style="color:#65737e;"># sh -c &quot;$(wget -qO- https://fpm.dev/install.sh)&quot;
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#65737e;"># The [ -t 1 ] check only works when the function is not called from
+</span><span style="color:#65737e;"># a subshell (like in `$(...)` or `(...)`, so this hack redefines the
+</span><span style="color:#65737e;"># function at the top level to always return false when stdout is not
+</span><span style="color:#65737e;"># a tty.
+</span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">[ </span><span style="color:#bf616a;">-t</span><span style="color:#c0c5ce;"> 1 </span><span style="color:#96b5b4;">]</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">  </span><span style="color:#8fa1b3;">is_tty</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">    </span><span style="color:#8fa1b3;">true
+</span><span style="color:#c0c5ce;">  }
+</span><span style="color:#b48ead;">else
+</span><span style="color:#c0c5ce;">  </span><span style="color:#8fa1b3;">is_tty</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">    </span><span style="color:#8fa1b3;">false
+</span><span style="color:#c0c5ce;">  }
+</span><span style="color:#b48ead;">fi
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#8fa1b3;">command_exists</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">  </span><span style="color:#96b5b4;">command </span><span style="color:#bf616a;">-v </span><span style="color:#c0c5ce;">&quot;$</span><span style="color:#bf616a;">@</span><span style="color:#c0c5ce;">&quot; &gt;/dev/null </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">&gt;&amp;</span><span style="color:#d08770;">1
+</span><span style="color:#c0c5ce;">}
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#8fa1b3;">setup_colors</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">! </span><span style="color:#8fa1b3;">is_tty</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_RED</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_GREEN</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_YELLOW</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_BLUE</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_BOLD</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_RESET</span><span style="color:#c0c5ce;">=&quot;&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">else
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_RED</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[31m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_GREEN</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[32m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_YELLOW</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[33m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_BLUE</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[34m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_BOLD</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[1m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">FMT_RESET</span><span style="color:#c0c5ce;">=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">\033[0m</span><span style="color:#c0c5ce;">&#39;</span><span style="color:#a3be8c;">)
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">fi
+</span><span style="color:#c0c5ce;">}
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#8fa1b3;">setup</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">    </span><span style="color:#65737e;"># Parse arguments
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">while </span><span style="color:#96b5b4;">[ </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;"># -gt</span><span style="color:#c0c5ce;"> 0 </span><span style="color:#96b5b4;">]</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">do
+</span><span style="color:#c0c5ce;">        </span><span style="color:#b48ead;">case </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">1 </span><span style="color:#b48ead;">in
+</span><span style="color:#c0c5ce;">            --pre-release</span><span style="color:#b48ead;">) </span><span style="color:#bf616a;">PRE_RELEASE</span><span style="color:#c0c5ce;">=</span><span style="color:#a3be8c;">true </span><span style="color:#c0c5ce;">;;
+</span><span style="color:#c0c5ce;">            --controller</span><span style="color:#b48ead;">) </span><span style="color:#bf616a;">CONTROLLER</span><span style="color:#c0c5ce;">=</span><span style="color:#a3be8c;">true</span><span style="color:#c0c5ce;">;;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#b48ead;">esac
+</span><span style="color:#c0c5ce;">    </span><span style="color:#96b5b4;">shift
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">done
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">[[ </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">PRE_RELEASE </span><span style="color:#96b5b4;">]]</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">URL</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">https://api.github.com/repos/fifthtry/fpm/releases</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#96b5b4;">echo </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Downloading the latest pre-release binaries</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">else
+</span><span style="color:#c0c5ce;">        </span><span style="color:#bf616a;">URL</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">https://api.github.com/repos/fifthtry/fpm/releases/latest</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#96b5b4;">echo </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Downloading the latest production ready binaries</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">fi
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">[[ </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">CONTROLLER </span><span style="color:#96b5b4;">]]</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">curl</span><span style="color:#bf616a;"> -L </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">URL </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">grep </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">.*\/releases\/download\/.*\/fpm_controller_linux.*</span><span style="color:#c0c5ce;">&quot; | </span><span style="color:#8fa1b3;">head</span><span style="color:#bf616a;"> -2 </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">cut</span><span style="color:#bf616a;"> -d</span><span style="color:#c0c5ce;"> :</span><span style="color:#bf616a;"> -f</span><span style="color:#c0c5ce;"> 2,3 | </span><span style="color:#8fa1b3;">tee</span><span style="color:#c0c5ce;"> /dev/tty | </span><span style="color:#8fa1b3;">xargs</span><span style="color:#bf616a;"> -I </span><span style="color:#c0c5ce;">% curl</span><span style="color:#bf616a;"> -O -J -L </span><span style="color:#c0c5ce;">%
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">mv</span><span style="color:#c0c5ce;"> fpm_controller_linux_musl_x86_64 &quot;</span><span style="color:#a3be8c;">fpm</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">mv</span><span style="color:#c0c5ce;"> fpm_controller_linux_musl_x86_64.d &quot;</span><span style="color:#a3be8c;">fpm.d</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">elif </span><span style="color:#96b5b4;">[[ </span><span style="color:#c0c5ce;">&quot;$</span><span style="color:#bf616a;">OSTYPE</span><span style="color:#c0c5ce;">&quot; == &quot;</span><span style="color:#a3be8c;">darwin</span><span style="color:#c0c5ce;">&quot;* </span><span style="color:#96b5b4;">]]</span><span style="color:#c0c5ce;">; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">curl</span><span style="color:#bf616a;"> -L </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">URL </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">grep </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">.*\/releases\/download\/.*\/fpm_macos.*</span><span style="color:#c0c5ce;">&quot; | </span><span style="color:#8fa1b3;">head</span><span style="color:#bf616a;"> -1 </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">cut</span><span style="color:#bf616a;"> -d</span><span style="color:#c0c5ce;"> :</span><span style="color:#bf616a;"> -f</span><span style="color:#c0c5ce;"> 2,3 | </span><span style="color:#8fa1b3;">tee</span><span style="color:#c0c5ce;"> /dev/tty | </span><span style="color:#8fa1b3;">xargs</span><span style="color:#bf616a;"> -I </span><span style="color:#c0c5ce;">% curl</span><span style="color:#bf616a;"> -O -J -L </span><span style="color:#c0c5ce;">%
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">mv</span><span style="color:#c0c5ce;"> fpm_macos_x86_64 &quot;</span><span style="color:#a3be8c;">fpm</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">else
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">curl</span><span style="color:#bf616a;"> -L </span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">URL </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">grep </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">.*\/releases\/download\/.*\/fpm_linux.*</span><span style="color:#c0c5ce;">&quot; | </span><span style="color:#8fa1b3;">head</span><span style="color:#bf616a;"> -2 </span><span style="color:#c0c5ce;">| </span><span style="color:#8fa1b3;">cut</span><span style="color:#bf616a;"> -d</span><span style="color:#c0c5ce;"> :</span><span style="color:#bf616a;"> -f</span><span style="color:#c0c5ce;"> 2,3 | </span><span style="color:#8fa1b3;">tee</span><span style="color:#c0c5ce;"> /dev/tty | </span><span style="color:#8fa1b3;">xargs</span><span style="color:#bf616a;"> -I </span><span style="color:#c0c5ce;">% curl</span><span style="color:#bf616a;"> -O -J -L </span><span style="color:#c0c5ce;">%
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">mv</span><span style="color:#c0c5ce;"> fpm_linux_musl_x86_64 &quot;</span><span style="color:#a3be8c;">fpm</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#8fa1b3;">mv</span><span style="color:#c0c5ce;"> fpm_linux_musl_x86_64.d &quot;</span><span style="color:#a3be8c;">fpm.d</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">fi
+</span><span style="color:#c0c5ce;">    </span><span style="color:#8fa1b3;">chmod</span><span style="color:#c0c5ce;"> +x &quot;</span><span style="color:#a3be8c;">fpm</span><span style="color:#c0c5ce;">&quot;*
+</span><span style="color:#c0c5ce;">}
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">() {
+</span><span style="color:#c0c5ce;">    </span><span style="color:#8fa1b3;">setup_colors
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">if </span><span style="color:#c0c5ce;">! </span><span style="color:#8fa1b3;">command_exists</span><span style="color:#c0c5ce;"> curl; </span><span style="color:#b48ead;">then
+</span><span style="color:#c0c5ce;">        </span><span style="color:#96b5b4;">echo </span><span style="color:#c0c5ce;">&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">FMT_RED</span><span style="color:#a3be8c;">}curl command not found. Please install the curl utility and execute the script once again</span><span style="color:#c0c5ce;">$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">FMT_RESET</span><span style="color:#a3be8c;">}</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">        </span><span style="color:#96b5b4;">exit</span><span style="color:#c0c5ce;"> 1
+</span><span style="color:#c0c5ce;">    </span><span style="color:#b48ead;">fi
+</span><span style="color:#c0c5ce;">    </span><span style="color:#8fa1b3;">setup </span><span style="color:#c0c5ce;">&quot;$</span><span style="color:#bf616a;">@</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#c0c5ce;">}
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#8fa1b3;">main </span><span style="color:#c0c5ce;">&quot;$</span><span style="color:#bf616a;">@</span><span style="color:#c0c5ce;">&quot;
+</span></pre>
+</div></div><style>
 
 
 
