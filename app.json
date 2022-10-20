@@ -1,0 +1,13 @@
+{
+  "name": "Start on Heroku: FPM",
+  "description": "An app to deploy on Heroku",
+  "repository": "https://github.com/FifthTry/fpm-heroku",
+  "logo": "https://raw.githubusercontent.com/FifthTry/fifthtry-brand-switcher/d84f8135c0a403506c196aa33c50c842262c7c2c/assets/images/doc-framework.png",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs",
+  "env": {
+    "DOWNLOAD_BASE_URL": {
+      "description": "DOWNLOAD_BASE_URL"
+    }
+  }
+}
