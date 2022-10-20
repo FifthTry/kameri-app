@@ -72,6 +72,7 @@ label: Status
 status-list: $utils.status-list
 $selected-valued: $selected-status
 align: center
+medium: true
 
 
 -- form.input-box: Description

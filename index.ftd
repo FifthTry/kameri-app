@@ -4,7 +4,7 @@
 
 -- boolean is-mobile: false
 
--- is-mobile:true
+-- is-mobile: true
 if: $ftd.device == mobile
 
 
@@ -54,20 +54,6 @@ $loop$: $todos as $todo
 todo: $todo
 
 
-
-
-
-
-
-
-
-
-
-- Todo : /
-- Open : /
-- Closed : /
-- On Hold : /
-- In Progress: /
 
 -- ftd.column display-todo:
 todo todo:
@@ -140,6 +126,19 @@ $on-click$: message-host $update-status-api
 
 --- ftd.text: $todo.description
 role: $fpm.type.copy-relaxed
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- todo list todos:

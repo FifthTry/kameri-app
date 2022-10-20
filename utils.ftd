@@ -51,7 +51,7 @@ link: $link
 
 -- boolean is-mobile: false
 
--- is-mobile:true
+-- is-mobile: true
 if: $ftd.device == mobile
 
 
@@ -80,12 +80,10 @@ width if $is-mobile: fill
 boolean large: false
 boolean small: false
 boolean extra-large: false
-boolean medium: true
+boolean medium: false
 boolean primary: false
-boolean seconadary: false
-boolean tertairy: false
-
-
+boolean secondary: false
+boolean tertiary: false
 
 --- ftd.column:
 $on-click$: toggle $open
@@ -126,17 +124,17 @@ $on-input$: $selected-valued= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-1
 padding-horizontal : $fpm.space.space-2
-background-color if primary: $fpm.color.main.cta-primary.base
-background-color if secondary: $fpm.color.main.cta-secondary.base
-background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color if $primary: $fpm.color.main.cta-primary.base
+background-color if $secondary: $fpm.color.main.cta-secondary.base
+background-color if $tertiary: $fpm.color.main.cta-tertiary.base
 background-color: $fpm.color.main.text-strong
 
 --- ftd.text: ﹀
 if: $status-list is not empty
 color: $fpm.color.main.text
-color if primary: $fpm.color.main.text-strong
-color if secondary: $fpm.color.main.text-strong
-color if tertiary: $fpm.color.main.text-strong
+color if $primary: $fpm.color.main.text-strong
+color if $secondary: $fpm.color.main.text-strong
+color if $tertiary: $fpm.color.main.text-strong
 position: center
 anchor: parent
 top: 0
@@ -160,7 +158,6 @@ value: $selected-valued
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
-height: fill
 color: $fpm.color.main.text
 border-radius: 8
 border-width: 1
@@ -171,17 +168,17 @@ $on-input$: $selected-valued= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
-background-color if primary: $fpm.color.main.cta-primary.base
-background-color if secondary: $fpm.color.main.cta-secondary.base
-background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color if $primary: $fpm.color.main.cta-primary.base
+background-color if $secondary: $fpm.color.main.cta-secondary.base
+background-color if $tertiary: $fpm.color.main.cta-tertiary.base
 background-color: $fpm.color.main.text-strong
 
 --- ftd.text: ﹀
 if: $status-list is not empty
 color: $fpm.color.main.text
-color if primary: $fpm.color.main.text-strong
-color if secondary: $fpm.color.main.text-strong
-color if tertiary: $fpm.color.main.text-strong
+color if $primary: $fpm.color.main.text-strong
+color if $secondary: $fpm.color.main.text-strong
+color if $tertiary: $fpm.color.main.text-strong
 position: center
 anchor: parent
 top: 0
@@ -206,7 +203,6 @@ value: $selected-valued
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
-height: fill
 color: $fpm.color.main.text
 border-radius: 8
 border-width: 1
@@ -217,17 +213,17 @@ $on-input$: $selected-valued= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-3
 padding-horizontal: $fpm.space.space-4
-background-color if primary: $fpm.color.main.cta-primary.base
-background-color if secondary: $fpm.color.main.cta-secondary.base
-background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color if $primary: $fpm.color.main.cta-primary.base
+background-color if $secondary: $fpm.color.main.cta-secondary.base
+background-color if $tertiary: $fpm.color.main.cta-tertiary.base
 background-color : $fpm.color.main.text-strong
 
 --- ftd.text: ﹀
 if: $status-list is not empty
 color: $fpm.color.main.text
-color if primary: $fpm.color.main.text-strong
-color if secondary: $fpm.color.main.text-strong
-color if tertiary: $fpm.color.main.text-strong
+color if $primary: $fpm.color.main.text-strong
+color if $secondary: $fpm.color.main.text-strong
+color if $tertiary: $fpm.color.main.text-strong
 position: center
 anchor: parent
 top: 0
@@ -249,7 +245,6 @@ value: $selected-valued
 cursor: pointer
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
-height: fill
 color: $fpm.color.main.text
 border-radius: 8
 border-width: 1
@@ -260,17 +255,17 @@ $on-input$: $selected-valued= $VALUE
 border-color: $fpm.color.main.border
 padding-vertical: $fpm.space.space-2
 padding-horizontal : $fpm.space.space-4
-background-color if primary: $fpm.color.main.cta-primary.base
-background-color if secondary: $fpm.color.main.cta-secondary.base
-background-color if tertiary: $fpm.color.main.cta-tertiary.base
+background-color if $primary: $fpm.color.main.cta-primary.base
+background-color if $secondary: $fpm.color.main.cta-secondary.base
+background-color if $tertiary: $fpm.color.main.cta-tertiary.base
 background-color : $fpm.color.main.text-strong
 
 --- ftd.text: ﹀
 if: $status-list is not empty
 color: $fpm.color.main.text
-color if primary: $fpm.color.main.text-strong
-color if secondary: $fpm.color.main.text-strong
-color if tertiary: $fpm.color.main.text-strong
+color if $primary: $fpm.color.main.text-strong
+color if $secondary: $fpm.color.main.text-strong
+color if $tertiary: $fpm.color.main.text-strong
 position: center
 anchor: parent
 top: 0
