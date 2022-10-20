@@ -1,6 +1,6 @@
 ./fpm-install.sh
 
-./fpm serve 8000 --bind 0.0.0.0 --download-base-url https://raw.githubusercontent.com/fifthtry/kameri-app/main
+./fpm serve $PORT --bind 0.0.0.0 --download-base-url https://raw.githubusercontent.com/fifthtry/kameri-app/main
 
 # Heroku create app
 # heroku apps:create kameri-app
