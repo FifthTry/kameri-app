@@ -1,0 +1,18 @@
+-- ftd.text: list
+
+-- string list l:
+$always-include$: true
+
+-- l: hello
+-- l: world
+
+
+-- ftd.text f: $text
+caption text:
+boolean o: false
+$on-click$: toggle $o
+border-width: 1
+border-width if $o: 0
+
+-- f: $i
+$loop$: $l as $i

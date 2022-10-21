@@ -1,0 +1,236 @@
+-- ftd.text:
+
+
+we will create a new workshop repo.
+
+duration: 2hrs (1130AM-130PM)
+confirmed: 4, wasif, rust-mentor
+
+
+
+
+
+
+
+
+
+
+-- ft.h0: part-1: fetch data from server
+
+
+
+-- ft.h1: 01-download fpm from release
+
+
+01-/
+    - FPM.ftd
+    - index.ftd: hello world
+
+; this is a ftd file
+;
+; lines with semi colon are comments
+;
+; to show a text we use something like this:
+
+-- ftd.text: hello
+
+; uncomment the line to see it
+
+
+-- ft.h1: 02-boolean
+
+boolean.ftd
+
+- ftd.boolean to show boolean
+- conditional text
+- ftd.device
+
+-- ft.h1: 03-integer
+
+integer.ftd
+
+-- ft.h1: optional string
+
+- if: $f is not null
+
+-- ft.h1: 04-record
+
+- define a record
+- create instance of a record
+- render record field
+
+-- ft.h1: 05-list
+
+- create a list
+- add elements to list
+- $loop$
+
+
+-- ft.h1: http processor
+
+/api/sample/: returns 5 todos (hard coded)
+- document the kameri-service apis (kameri-service.herokuapp.com/) or in README
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ft.h0: part 2: show styled ui (without events)
+
+-- ft.h1: basic styling
+
+ftd.text:
+
+- padding
+- border
+- font-size
+- font-color
+- bg-color
+
+-- ft.h1: dark mode support
+
+ftd.dark-mode (show UI changing through system preferences)
+
+-- ft.h1: create a row, column
+
+tutorial
+
+- row
+- padding
+
+-- ft.h1: todo ui without component
+
+just practice
+
+
+-- ft.h1: define a re-usable component
+
+show-todo
+
+- arguments
+- dom previous step
+
+
+-- ft.h1: show sample todo list fetched from server
+
+$loop$
+
+-- ft.h1: handling image
+
+- path
+- dark mode
+
+-- ft.h1: import
+
+we will move definition of record and ui into other files and import them.
+
+-- ft.h1: 02-dependency
+
+dependency: button
+
+-- ft.h1: 03-auto-import
+
+dependency: button
+
+
+
+
+
+
+-- ft.h0: part 3: basic event handling
+
+
+
+-- ft.h1: lets build a counter
+
+- on-click
+- integer, increment, decrement
+
+
+
+-- ft.h1: lets build a better button
+
+- on-mouse-enter, on-mouse-leave (change styling)
+- boolean
+
+
+-- ft.h1: lets create a form
+
+- on-change
+- on-input
+
+
+-- ft.h1: a dialog
+
+- on-click
+- on-click-outside
+
+-- ft.h1: keyboard handling in dialog
+
+- on-global-key
+- on-global-key-seq
+
+-- ft.h1: components with mutable arguments
+
+- toggle component
+- global variable
+
+we will show two elements whose style depends on global variable. we have passed
+that variable mutably to the toggle component
+
+
+
+
+
+
+
+
+
+-- ft.h0: part 4: http requests from frontend
+
+
+-- ft.h1: ftd http response handling basics
+
+lecture
+
+-- ft.h1: fetch sample on click?
+
+- message-host, http function
+- object
+- string list only
+
+(django api: /api/print-headers/)
+
+- mention: record doesnt work
+- mention: events do not work
+
+
+-- ft.h1: sending data to http (redirect)
+
+theory to include django code for redirect
+
+- form (title, description, status)
+- redirect
+
+-- ft.h1: form error handling
+
+theory to include django code for form errors
+
+- optional string
+- $foo: $bar (for error handling)
+
+
+-- ft.h1: lets implement the add todo form
+
+
+fix some broken / partial code
+now index to use actual todo list api instead of /sample/
+
