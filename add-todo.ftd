@@ -1,5 +1,5 @@
 -- import: fpm
--- import:  kameri-app/utils
+-- import:  kameri.herokuapp.com/utils
 
 -- string selected-status: Todo
 $always-include$: true

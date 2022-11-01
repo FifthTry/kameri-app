@@ -1,6 +1,6 @@
 -- import: fpm
 
--- fpm.package: kameri-app
+-- fpm.package: kameri.herokuapp.com
 download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
 endpoint: https://kameri-service.herokuapp.com
 /endpoint: http://127.0.0.1:8001

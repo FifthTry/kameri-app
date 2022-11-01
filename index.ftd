@@ -1,6 +1,6 @@
 -- import: fpm
--- import: kameri-app/assets
--- import: kameri-app/utils
+-- import: kameri.herokuapp.com/assets
+-- import: kameri.herokuapp.com/utils
 
 -- boolean is-mobile: false
 
