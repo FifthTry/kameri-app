@@ -1,6 +1,6 @@
 -- import: fpm
--- import: kameri.herokuapp.com/assets
--- import: kameri.herokuapp.com/utils
+-- import: kameri-mount-point.herokuapp.com/assets
+-- import: kameri-mount-point.herokuapp.com/utils
 
 -- boolean is-mobile: false
 

@@ -12,7 +12,8 @@
 
 # deployed another branch
 # Heroku create app
-# heroku apps:create kameri
-# heroku apps:destroy kameri
-# heroku git:remote -a kameri
+# heroku apps:create kameri-mount-point
+# heroku apps:destroy kameri-mount-point
+# heroku git:remote -a kameri-mount-point
+# git push heroku as-mount-point
 # git push heroku as-mount-point
