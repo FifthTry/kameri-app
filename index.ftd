@@ -44,7 +44,7 @@ style: bold
 
 --- button.button: Add TODO
 role: primary
-link: /add-todo/
+link: /-/kameri-app/add-todo/
 large: true
 
 --- container: ftd.main
@@ -154,7 +154,8 @@ role: $fpm.type.copy-relaxed
 $processor$: http
 method: get
 /url: http://127.0.0.1:8001/api/todos/
-url: https://kameri-service.herokuapp.com/api/todos/
+/url: https://kameri-service.herokuapp.com/api/todos/
+url: /-/kameri-app/api/todos/
 
 -- list-todo:
 todos: $todos
@@ -163,9 +164,6 @@ todos: $todos
 -- object update-status-api:
 function: http
 method: post
-url: /api/update-todo/
+url: /-/kameri-app/api/update-todo/
 id: $todo-id
 status: $todo-status
-
-
-

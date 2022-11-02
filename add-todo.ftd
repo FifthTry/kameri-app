@@ -98,7 +98,7 @@ dark: black
 -- object add-api:
 function: http
 method: post
-url: /api/add-todo/
+url: /-/kameri-app/api/add-todo/
 title: $title
 status: $selected-status
 description: $description
