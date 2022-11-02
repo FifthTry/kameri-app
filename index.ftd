@@ -1,6 +1,6 @@
 -- import: fpm
--- import: kameri-app/assets
--- import: kameri-app/utils
+-- import: kameri-app.heroku.com/assets
+-- import: kameri-app.heroku.com/utils
 
 -- boolean is-mobile: false
 
@@ -155,7 +155,7 @@ $processor$: http
 method: get
 /url: http://127.0.0.1:8001/api/todos/
 /url: https://kameri-service.herokuapp.com/api/todos/
-url: /-/kameri-app/api/todos/
+url: /-/kameri-app.heroku.com/api/todos/
 
 -- list-todo:
 todos: $todos
@@ -164,6 +164,6 @@ todos: $todos
 -- object update-status-api:
 function: http
 method: post
-url: /-/kameri-app/api/update-todo/
+url: /-/kameri-app.heroku.com/api/update-todo/
 id: $todo-id
 status: $todo-status

@@ -1,6 +1,6 @@
 -- import: fpm
 
--- fpm.package: kameri-app
+-- fpm.package: kameri-app.heroku.com
 download-base-url: https://raw.githubusercontent.com/fifthtry/kameri-app/main
 endpoint: https://kameri-service.herokuapp.com
 /endpoint: http://127.0.0.1:8001
@@ -20,5 +20,3 @@ endpoint: https://kameri-service.herokuapp.com
   url: /add-todo/
   document: add-todo.ftd
 - List Todo: /
-- list: /list/
-- lr: /lr/
