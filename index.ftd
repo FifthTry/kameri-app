@@ -44,7 +44,7 @@ style: bold
 
 --- button.button: Add TODO
 role: primary
-link: /-/kameri-app/add-todo/
+link: /-/kameri-app.heroku.com/add-todo/
 large: true
 
 --- container: ftd.main
