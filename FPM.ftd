@@ -12,16 +12,6 @@ endpoint: https://kameri-service.herokuapp.com
 -- fpm.auto-import: form
 
 
-/-- fpm.dynamic-urls:
-
-;; error while calling /-/kameri-app/api/update-todo/
-/- Add Todo
-
-  url: /add-todo/<string:name>
-  document: add-todo.ftd
-
-
-
 -- fpm.sitemap:
 
 # App: /
