@@ -1,5 +1,5 @@
 -- import: fpm
--- import:  kameri-app.heroku.com/utils
+-- import:  kameri-app.herokuapp.com/utils
 
 -- string selected-status: Todo
 $always-include$: true
@@ -98,7 +98,7 @@ dark: black
 -- object add-api:
 function: http
 method: post
-url: /-/kameri-app.heroku.com/api/add-todo/
+url: /-/kameri-app.herokuapp.com/api/add-todo/
 title: $title
 status: $selected-status
 description: $description

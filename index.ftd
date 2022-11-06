@@ -1,6 +1,6 @@
 -- import: fpm
--- import: kameri-app.heroku.com/assets
--- import: kameri-app.heroku.com/utils
+-- import: kameri-app.herokuapp.com/assets
+-- import: kameri-app.herokuapp.com/utils
 
 -- boolean is-mobile: false
 
@@ -44,7 +44,7 @@ style: bold
 
 --- button.button: Add TODO
 role: primary
-link: /-/kameri-app.heroku.com/add-todo/
+link: /-/kameri-app.herokuapp.com/add-todo/
 large: true
 
 --- container: ftd.main
@@ -153,9 +153,7 @@ role: $fpm.type.copy-relaxed
 -- todo list todos:
 $processor$: http
 method: get
-/url: http://127.0.0.1:8001/api/todos/
-/url: https://kameri-service.herokuapp.com/api/todos/
-url: /-/kameri-app.heroku.com/api/todos/
+url: /-/kameri-app.herokuapp.com/api/todos/
 
 -- list-todo:
 todos: $todos
@@ -164,6 +162,6 @@ todos: $todos
 -- object update-status-api:
 function: http
 method: post
-url: /-/kameri-app.heroku.com/api/update-todo/
+url: /-/kameri-app.herokuapp.com/api/update-todo/
 id: $todo-id
 status: $todo-status
